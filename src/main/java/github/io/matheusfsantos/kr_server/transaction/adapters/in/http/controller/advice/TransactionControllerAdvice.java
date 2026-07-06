@@ -2,7 +2,7 @@ package github.io.matheusfsantos.kr_server.transaction.adapters.in.http.controll
 
 import github.io.matheusfsantos.kr_server.transaction.adapters.in.http.controller.advice.response.TransactionExceptionResponse;
 import github.io.matheusfsantos.kr_server.transaction.application.core.model.exception.TransactionException;
-import github.io.matheusfsantos.kr_server.user.application.core.utils.DateUtils;
+import github.io.matheusfsantos.kr_server.transaction.application.core.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
