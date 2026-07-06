@@ -1,6 +1,6 @@
 package github.io.matheusfsantos.kr_server.user.adapters.in.http.impl;
 
-import github.io.matheusfsantos.kr_server.transaction.application.core.utils.DateUtils;
+import github.io.matheusfsantos.kr_server.user.application.core.utils.DateUtils;
 import github.io.matheusfsantos.kr_server.user.adapters.in.http.UserController;
 import github.io.matheusfsantos.kr_server.user.adapters.in.http.impl.mapper.NewUserRequestMapper;
 import github.io.matheusfsantos.kr_server.user.adapters.in.http.impl.request.NewUserRequest;
