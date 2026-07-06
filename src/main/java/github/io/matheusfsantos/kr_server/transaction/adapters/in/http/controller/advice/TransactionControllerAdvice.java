@@ -2,6 +2,7 @@ package github.io.matheusfsantos.kr_server.transaction.adapters.in.http.controll
 
 import github.io.matheusfsantos.kr_server.transaction.adapters.in.http.controller.advice.response.TransactionExceptionResponse;
 import github.io.matheusfsantos.kr_server.transaction.application.core.model.exception.TransactionException;
+import github.io.matheusfsantos.kr_server.user.application.core.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,9 @@ import java.time.LocalDateTime;
 public class TransactionControllerAdvice {
 
     @ExceptionHandler(TransactionException.class)
-    public ResponseEntity<TransactionExceptionResponse> transactionExceptionHandler(TransactionException exception) {
+    public ResponseEntity<TransactionExceptionResponse> handleTransactionException(TransactionException exception) {
+        log.info("{} - handleTransactionException - message: end workflow with exception handler response, at: {}, status: {} ----> HTTP/END", getClass().getSimpleName(), DateUtils.getCurrent(), HttpStatus.valueOf(exception.getCode()));
+
         TransactionExceptionResponse response = TransactionExceptionResponse.builder()
             .message(exception.getMessage())
             .exceptionAt(LocalDateTime.now())

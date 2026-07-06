@@ -1,6 +1,6 @@
 package github.io.matheusfsantos.kr_server.user.adapters;
 
-import github.io.matheusfsantos.kr_server.user.adapters.out.repository.entity.User;
+import github.io.matheusfsantos.kr_server.user.adapters.out.repository.entity.UserEntity;
 import github.io.matheusfsantos.kr_server.user.adapters.out.repository.mapper.NewUserMapper;
 import github.io.matheusfsantos.kr_server.user.adapters.out.repository.UserRepository;
 import github.io.matheusfsantos.kr_server.user.application.core.model.NewUser;
@@ -18,7 +18,7 @@ public class PersisUserAdapter implements PersisUserOutputPort {
     @Override
     public void persist(NewUser user) {
         log.info("{} - persist - message: saving user with email = {} to the database...", getClass().getSimpleName(), user.email());
-        User readyToSave = NewUserMapper.toEntity(user);
+        UserEntity readyToSave = NewUserMapper.toEntity(user);
 
         this.userRepository.save(readyToSave);
         log.info("{} - persist - message: user saved successfully!", getClass().getSimpleName());
