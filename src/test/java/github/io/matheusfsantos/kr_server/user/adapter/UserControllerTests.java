@@ -23,7 +23,8 @@ import tools.jackson.databind.ObjectMapper;
 public class UserControllerTests {
     @Autowired
     private MockMvc mockMvc;
-    private ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockitoBean
     private CreateUserInputPort createUserInputPort;
