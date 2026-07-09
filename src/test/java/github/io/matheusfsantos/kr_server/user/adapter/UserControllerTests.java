@@ -4,14 +4,17 @@ import github.io.matheusfsantos.kr_server.user.adapters.in.http.impl.UserControl
 import github.io.matheusfsantos.kr_server.user.adapters.in.http.impl.advice.response.UserExceptionResponse;
 import github.io.matheusfsantos.kr_server.user.adapters.in.http.impl.request.NewUserRequest;
 import github.io.matheusfsantos.kr_server.user.application.ports.in.CreateUserInputPort;
+import github.io.matheusfsantos.kr_server.user.application.ports.in.GetUserByEmailInputPort;
 import github.io.matheusfsantos.kr_server.user.application.ports.in.ValidateUserCredentialsInputPort;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -30,6 +33,8 @@ public class UserControllerTests {
     private CreateUserInputPort createUserInputPort;
     @MockitoBean
     private ValidateUserCredentialsInputPort validateUserCredentialsInputPort;
+    @MockitoBean
+    private GetUserByEmailInputPort getUserByEmailInputPort;
 
     @Test
     void shouldBeReturnAUserCredentials() throws Exception {

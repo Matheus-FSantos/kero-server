@@ -32,6 +32,6 @@ public class ValidateUserCredentialsUseCase implements ValidateUserCredentialsIn
         Boolean equals = this.passwordValidateOutputPort.compare(credentials.password(), user.get().password());
         if(Boolean.FALSE.equals(equals)) return Optional.empty();
 
-        return Optional.of(new UserIdentity(credentials.email(), user.get().role()));
+        return Optional.of(new UserIdentity(user.get().id(), credentials.email(), user.get().role()));
     }
 }

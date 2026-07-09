@@ -1,9 +1,9 @@
-package github.io.matheusfsantos.kr_server.user.application.core.model;
+package github.io.matheusfsantos.kr_server.auth.application.core.model;
 
 import java.util.UUID;
 
 public record UserIdentity(
     UUID id,
     String email,
-    UserRole role
+    String role
 ) { }

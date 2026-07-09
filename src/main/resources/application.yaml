@@ -1,10 +1,8 @@
-server:
-  servlet:
-    context-path: /kero-server/v1
-
 spring:
   application:
     name: kr-server
+  profiles:
+    active: ${APP_PROFILE}
   datasource:
     url: jdbc:h2:mem:test
     username: sa
@@ -16,6 +14,53 @@ spring:
   gemini:
     api-key: ${GEMINI_APIKEY}
     base-url: https://generativelanguage.googleapis.com/v1beta
+  api:
+    security:
+      token:
+        secret: minha-chave-segura-123
+        expiration-minutes: 120
+
+server:
+  servlet:
+    context-path: /kero-server/v1
+
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+
+modules:
+  user:
+    validate-credentials:
+      url: "http://localhost:8080/kero-server/v1"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+modules:
+  user:
+    validate-credentials:
+      url: "https://kero-server.com/kero-server/v1"
+
+logging:
+  structured:
+    format:
+      console: ecs
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+modules:
+  user:
+    validate-credentials:
+      url: "http://localhost:8080/kero-server/v1"
 
 logging:
   structured:
