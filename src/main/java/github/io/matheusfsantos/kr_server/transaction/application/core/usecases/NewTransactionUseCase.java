@@ -9,11 +9,9 @@ import github.io.matheusfsantos.kr_server.transaction.application.ports.in.NewTr
 import github.io.matheusfsantos.kr_server.transaction.application.ports.out.GetTransactionInfosOutputPort;
 
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.UUID;
 
 public class NewTransactionUseCase implements NewTransactionInputPort {
-    private final Logger logger = Logger.getLogger(getClass().getName());
     private final GetTransactionInfosOutputPort getTransactionInfosOutputPort;
 
     public NewTransactionUseCase(GetTransactionInfosOutputPort getTransactionInfosOutputPort) {
@@ -21,8 +19,13 @@ public class NewTransactionUseCase implements NewTransactionInputPort {
     }
 
     @Override
-    public Transaction persist(InputStream file, String contentType) throws IllegalFileCastException, ExternalServiceException, PayloadContractException, MissingContentException {
+    public Object persist(InputStream file, String contentType, UUID id) throws IllegalFileCastException, ExternalServiceException, PayloadContractException, MissingContentException {
         Transaction transaction = this.getTransactionInfosOutputPort.get(file, contentType);
-        return transaction;
+        return new Context(id, transaction);
     }
+
+    private record Context(
+        UUID id,
+        Transaction transaction
+    ) { }
 }

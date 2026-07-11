@@ -3,6 +3,9 @@ spring:
     name: kr-server
   profiles:
     active: ${APP_PROFILE}
+  servlet:
+    multipart:
+      resolve-lazily: false
   datasource:
     url: jdbc:h2:mem:test
     username: sa
@@ -31,9 +34,7 @@ spring:
       on-profile: development
 
 modules:
-  user:
-    validate-credentials:
-      url: "http://localhost:8080/kero-server/v1"
+  base-url: "http://localhost:8080/kero-server/v1"
 
 ---
 spring:
@@ -42,9 +43,7 @@ spring:
       on-profile: prod
 
 modules:
-  user:
-    validate-credentials:
-      url: "https://kero-server.com/kero-server/v1"
+  base-url: "https://kero-server.com/kero-server/v1"
 
 logging:
   structured:
@@ -58,9 +57,7 @@ spring:
       on-profile: test
 
 modules:
-  user:
-    validate-credentials:
-      url: "http://localhost:8080/kero-server/v1"
+  base-url: "http://localhost:8080/kero-server/v1"
 
 logging:
   structured:
